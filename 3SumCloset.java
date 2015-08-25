@@ -7,36 +7,36 @@ Given an array S of n integers, find three integers in S such that the sum is cl
  */
 
 
-public class Solution {
-    public int threeSumClosest(int[] nums, int target) {
-        if (nums == null || nums.length < 3) {
-            return 0;
-        }
-        Arrays.sort(nums);
-        int dif = Integer.MAX_VALUE;
-        int res = 0;
-        for (int i = 0; i < nums.length - 2; i++) {
-            if (i != 0 && nums[i] == nums[i - 1]) {
-                continue;
+    public class Solution {
+        public int threeSumClosest(int[] nums, int target) {
+            if (nums == null || nums.length < 3) {
+                return 0;
             }
-            int start = i + 1;
-            int end = nums.length - 1;
-            while (start < end) {
-                int sum = nums[i] + nums[start] + nums[end];
-                if (Math.abs(sum - target) < dif) {
-                    dif = Math.abs(sum - target);
-                    res = sum;
+            Arrays.sort(nums);
+            int dif = Integer.MAX_VALUE;
+            int res = 0;
+            for (int i = 0; i < nums.length - 2; i++) {
+                if (i != 0 && nums[i] == nums[i - 1]) {
+                    continue;
                 }
-                if (sum == target) {
-                    return target;
-                } else if (sum > target) {
-                    end--;
-                } else {
-                    start++;
+                int start = i + 1;
+                int end = nums.length - 1;
+                while (start < end) {
+                    int sum = nums[i] + nums[start] + nums[end];
+                    if (Math.abs(sum - target) < dif) {
+                        dif = Math.abs(sum - target);
+                        res = sum;
+                    }
+                    if (sum == target) {
+                        return target;
+                    } else if (sum > target) {
+                        end--;
+                    } else {
+                        start++;
+                    }
+                    
                 }
-                
             }
+            return res;
         }
-        return res;
     }
-}
