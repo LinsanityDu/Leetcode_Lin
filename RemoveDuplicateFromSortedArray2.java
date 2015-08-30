@@ -9,6 +9,29 @@ Your function should return length = 5, with the first five elements of nums bei
 
 public class Solution {
     public int removeDuplicates(int[] nums) {
-        
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int len = nums.length;
+        if (len <= 2) {
+            return len;
+        }
+        int res = 0;
+        int left = 0;
+        int right = 0;
+        while (left < len) {
+            right = left + 1;
+            while (right < len && nums[right] == nums[left]) {
+                right++;
+            }
+            if (right - left >= 2) {
+                nums[res++] = nums[right - 1];
+                nums[res++] = nums[right - 1];
+            } else {
+                nums[res++] = nums[right - 1];
+            }
+            left = right;
+        }
+        return res;
     }
 }
