@@ -71,3 +71,38 @@ public class Solution {
         return miss;
     }
 }
+
+
+
+// Discussion
+Pretty simple since we are told that we are missing only one number in [1,n], we just need to look at the difference between the sum([1,n]) = n * (n+1) / 2 and the sum of nums in our array.
+
+public class Solution {
+    public int missingNumber(int[] nums) {
+        int sum = 0;
+        for(int num: nums)
+            sum += num;
+
+        return (nums.length * (nums.length + 1) )/ 2 - sum;
+    }
+}
+With a slight mod to the return statement the situation for large n is taken care of. The needed modification is
+
+return ( (nums.length * (nums.length + 1) ) - 2 * sum ) / 2;
+
+
+
+
+
+// Bit Discussion
+public class Solution {
+    public int missingNumber(int[] nums) {
+        int check = 0;
+        for (int i=0; i<nums.length; i++) {
+            check ^= nums[i] ^ i+1;
+        }
+        return check;
+    }
+}
+
+
