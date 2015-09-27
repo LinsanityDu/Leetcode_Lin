@@ -70,3 +70,34 @@ public class Solution {
 
     }
 }
+
+
+
+// Search once
+// The same time complexity; but pay attention to the overflow
+// Pay attention to the transfer from ID to position
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0) {
+            return false;
+        }
+        int start = 0;
+        int row = matrix.length;
+        int column = matrix[0].length;
+        int end = row * column - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (matrix[mid / column][mid % column] > target) {
+                end = mid;
+            } else if (matrix[mid / column][mid % column] < target) {
+                start = mid;
+            } else {
+                return true;
+            }
+        }
+        if (matrix[start / column][start % column] == target || matrix[end / column][end % column] == target) {
+            return true;
+        }
+        return false;
+    }
+}
