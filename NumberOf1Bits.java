@@ -15,3 +15,19 @@ public class Solution {
         return res;
     }
 }
+
+// Another
+
+public int hammingWeight(int n) {
+        int result = 0;
+        while (n != 0) {
+            if ((n & 1) == 1) {
+                result++;
+            }
+            n >>>= 1;
+        }
+        return result;
+}
+
+// Unsigned Right Shift >>> 空位都以0补齐
+// Signed Right Shift >> 符号位不变 最左边 正数补0 负数补1

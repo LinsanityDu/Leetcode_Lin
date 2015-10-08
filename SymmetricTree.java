@@ -44,3 +44,42 @@ public class Solution {
         return left.val==right.val && helper(left.left,right.right) && helper(left.right,right.left);
     }
 }
+
+
+// Recursive
+public boolean isSymmetric(TreeNode root) {
+    return root==null || isSymmetricHelp(root.left, root.right);
+}
+
+private boolean isSymmetricHelp(TreeNode left, TreeNode right){
+    if(left==null || right==null)
+        return left==right;
+    if(left.val!=right.val)
+        return false;
+    return isSymmetricHelp(left.left, right.right) && isSymmetricHelp(left.right, right.left);
+}
+
+
+// Iterative Pay attention to the order of pushing
+public boolean isSymmetric(TreeNode root) {
+    if (root == null)
+        return true;
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    stack.push(root.left);
+    stack.push(root.right);
+    while (!stack.isEmpty()) {
+        TreeNode node1 = stack.pop();
+        TreeNode node2 = stack.pop();
+        if (node1 == null && node2 == null)
+            continue;
+        if (node1 == null || node2 == null)
+            return false;
+        if (node1.val != node2.val)
+            return false;
+        stack.push(node1.left);
+        stack.push(node2.right);
+        stack.push(node1.right);
+        stack.push(node2.left);
+    }
+    return true;
+}

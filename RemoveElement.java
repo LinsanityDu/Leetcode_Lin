@@ -43,3 +43,10 @@ The order of elements can be changed. It doesn't matter what you leave beyond th
 	        return pointer + 1;
 	    }
 	}
+
+// Another way
+int removeElement(int A[], int n, int elem) {
+    int begin=0;
+    for(int i=0;i<n;i++) if(A[i]!=elem) A[begin++]=A[i];
+    return begin;
+}

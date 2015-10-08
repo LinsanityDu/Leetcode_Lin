@@ -66,3 +66,47 @@ public class Solution {
         return res;
     }
 }
+
+
+// Concise 
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    int lenA = length(headA), lenB = length(headB);
+    // move headA and headB to the same start point
+    while (lenA > lenB) {
+        headA = headA.next;
+        lenA--;
+    }
+    while (lenA < lenB) {
+        headB = headB.next;
+        lenB--;
+    }
+    // find the intersection until end
+    while (headA != headB) {
+        headA = headA.next;
+        headB = headB.next;
+    }
+    return headA;
+}
+
+private int length(ListNode node) {
+    int length = 0;
+    while (node != null) {
+        node = node.next;
+        length++;
+    }
+    return length;
+}
+
+
+// A tricky solution
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if( null==headA || null==headB )
+            return null;
+
+        ListNode curA = headA, curB = headB;
+        while( curA!=curB){
+            curA = curA==null?headB:curA.next;
+            curB = curB==null?headA:curB.next;
+        }
+        return curA;
+    }
