@@ -38,3 +38,26 @@ public class Solution {
         return Math.max(dp1[nums.length - 2], dp2[nums.length - 2]);
     }
 }
+
+
+// O(1) Space
+public class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        } 
+        if (nums.length == 1) return nums[0];
+        return Math.max(helper(nums, 0, nums.length - 2), helper(nums, 1, nums.length - 1));
+    }
+    
+    private int helper(int[] nums, int start, int end) {
+        int pre = 0;
+        int cur = 0;
+        for (int i = start; i <= end; i++) {
+            int temp = Math.max(pre + nums[i], cur);
+            pre = cur;
+            cur = temp;
+        }
+        return cur;
+    }
+}

@@ -43,3 +43,23 @@ public class Solution {
         return res;
     }
 }
+
+
+
+// Logic
+for (int i = 0; i < nums.size(); i++) {
+            if (candidate1 == nums.get(i)) {
+                count1 ++;
+            } else if (candidate2 == nums.get(i)) {
+                count2 ++;
+            } else if (count1 == 0) {
+                candidate1 = nums.get(i);
+                count1 = 1;
+            } else if (count2 == 0) {
+                candidate2 = nums.get(i);
+                count2 = 1;
+            } else {
+                count1--;
+                count2--;
+            }
+}
