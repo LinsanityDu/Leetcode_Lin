@@ -24,7 +24,7 @@ public String getPermutation(int n, int k) {
         StringBuilder sb = new StringBuilder();
         for (int i = n; i > 0; i--){
             int ind = k/fact[i-1];
-            k = k%fact[i-1];
+            k = k%fact[i-1];Lion
             sb.append(num.get(ind));
             num.remove(ind);
         }
