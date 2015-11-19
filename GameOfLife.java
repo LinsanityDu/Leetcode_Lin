@@ -12,6 +12,28 @@ Follow up:
 Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.
 In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?*/
 
+/*To solve it in place, we use 2 bits to store 2 states:
+
+[2nd bit, 1st bit] = [next state, current state]
+
+- 00 dead (current) -> dead (next)
+- 01 live (current) -> dead (next)
+- 10 dead (current) -> live (next)
+- 11 live (current) -> live (next)
+In the beginning, every 2nd state is 0; when next becomes alive change 2nd bit to 1:
+
+live -> die: nbs < 2 || nbs > 3 (we don't need to care!)
+live -> live: nbs >= 2 && nbs <= 3
+dead -> live: nbs == 3
+To get this state, we simple do:
+
+board[i][j] & 1
+To get next state, we simple do:
+
+board[i][j] >> 1
+Hope this helps!*/
+
+
 public class Solution {
     public void gameOfLife(int[][] board) {
         int[][] dir ={{1,-1},{1,0},{1,1},{0,-1},{0,1},{-1,-1},{-1,0},{-1,1}};
